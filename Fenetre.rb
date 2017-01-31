@@ -16,16 +16,39 @@ class Fenetre < Gtk::Window
 		# Niveau 1 #
 		#==========#
 		vboxMain = Gtk::VBox.new(false, 2) # Menu + Table pour Grille, Aide et bouton
+		style = Gtk::RcStyle.new()
+		style.set_bg(Gtk::STATE_NORMAL, 0, 60000, 0)
+		vboxMain.modify_style(style)
 	    add(vboxMain)
 
 
-		#=========================#
-		# Creation Menu (à finir) #
-		#=========================#
+		#=========================# Note: Menu = Groupe de MenuItem une fois définie un submenu d'un autres MenuItem qui sert de titre
+		# Creation Menu (à finir) # Exemple:  Fichier [Menu: (Nouveau, Sauvegarder, ...)]
+		#=========================# Voir si on nomme les MenuItem "MI" pour faire plus propre
+
 	    menuBar = Gtk::MenuBar.new # Barre du menu
+
+	    # Menu Fichier
 	    fileMenuItem = Gtk::MenuItem.new("Fichier") # Item Fichier
-	    fileMenu = Gtk::Menu.new # Menu de Fichier
+	    fileMenu = Gtk::Menu.new() # Menu de Fichier
 	    fileMenuItem.set_submenu(fileMenu)
+
+	        # Nouveau
+	        nouveauMenuItem = Gtk::MenuItem.new("Nouveau")
+	        fileMenu.append(nouveauMenuItem)
+	        
+	        # Sauvegarder
+	        sauvergarderMenuItem = Gtk::MenuItem.new("Sauvegarder")
+	        fileMenu.append(sauvergarderMenuItem)
+
+	        # Fermer
+	        fermerMenuItem = Gtk::MenuItem.new("Fermer")
+            fermerMenuItem.signal_connect "activate" do
+                Gtk.main_quit
+            end
+            fileMenu.add(fermerMenuItem)
+
+        # Menu Option
 	    menuBar.append(fileMenuItem)	
 		
 		#==========#
@@ -41,7 +64,7 @@ class Fenetre < Gtk::Window
 
 		# Grille de Sudoku
 		tableGrille = Gtk::Table.new(9,9)
-		#tableGrille.override_background_color(Gtk.StateType.NORMAL, Gdk.RGBA(.5,.5,.5,.5))
+		#tableGrille.modify_bg(Gtk::STATE_NORMAL , Gdk::Color.new(0, 60000, 0))
 	    # modify_bg(Gtk::STATE_NORMAL , Gdk::Color.new(0, 60000, 0))  # commande couleur
 		
 		# Cadre d'aide
