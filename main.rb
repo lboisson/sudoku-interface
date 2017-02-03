@@ -1,3 +1,3 @@
-require "./Fenetre.rb"
+require "./Fenetre2.rb"
 
-fenetre = Fenetre.new
+fenetre = Fenetre2.new
