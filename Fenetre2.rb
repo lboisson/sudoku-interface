@@ -126,9 +126,10 @@ class Fenetre2 < Gtk::Window
 	end
 
 	def setAide(titre, listeCase, desc)
-		titreFormat = "<span weigth=\"bold\" foreground=\"#200020\">"+titre+"<span>"
-		listeCaseFormat = "<span style=\"italic\">Case:"+ (listeCase.empty? ? "Aucune" : listeCase.to_s) +"<span>"
-		descFormat = "<span>"+desc+"<span>"
-		@cadreAide.markup = titreFormat # + descFormat) #  + listeCase
+		@cadreAide.set_markup("")
+		#titreFormat = "<span font-weight=\"bold\" foreground=\"#200020\">test</span>"
+		#listeCaseFormat = "<span style=\"italic\">Case:"+ (listeCase.empty? ? "Aucune" : listeCase.to_s) +"</span>"
+		#descFormat = "<span>"+desc+"</span>"
+		#@cadreAide.markup = titreFormat # + descFormat) #  + listeCase
 	end
 end
