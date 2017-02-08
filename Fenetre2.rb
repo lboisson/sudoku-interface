@@ -9,7 +9,7 @@ class Fenetre2 < Gtk::Window
 		end
 
 		# Property
-		set_title "Sudoku Ultimate Premium Professional Familial Exclusive Edition (Version d'Evaluation)"
+		set_title "Sudoku Pre-Alpha Ultimate Premium Professional Familial Exclusive Edition (Version d'Evaluation)"
 		set_default_size 1000, 500
 
 		#==========#
