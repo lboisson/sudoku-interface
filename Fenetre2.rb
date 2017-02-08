@@ -68,17 +68,13 @@ class Fenetre2 < Gtk::Window
 
 		# Grille de Sudoku
 		box = Gtk::Box.new(:horizontal, 0)
-		box.override_background_color(:normal, Gdk::RGBA::new(1.0,0.6,0.6,1.0))
+		#box.override_background_color(:normal, Gdk::RGBA::new(1.0,0.6,0.6,1.0))
 
 		tableGrille = Gtk::Table.new(9, 9, false)
-		tableGrille.row_spacings = 5
-		tableGrille.column_spacings = 5
-		tableGrille.border_width = 10
-		tableGrille.set_border_width(10)
 
 		labelTest = Gtk::Label.new("1")
 
-		tableGrille.attach(labelTest, 0, 1, 0, 1)
+		tableGrille.attach(labelTest, 1, 2, 1, 2)
 		box.add(tableGrille)
 
 		# Cadre d'aide
@@ -91,8 +87,11 @@ class Fenetre2 < Gtk::Window
 		hboxBouton.homogeneous = true
 		hboxBouton.override_background_color(:normal, Gdk::RGBA::new(0.6,1.0,0.6,1.0))
 
-		tableMain.attach(box        , 0,4,0,8)
-		tableMain.attach(@cadreAide  , 4,9,0,8)
+		event = Gtk::EventBox.new().add(Gtk::Image.new(GdkPixbuf::Pixbuf.new("IC83657.gif", 432, 432)))
+		tableMain.attach(box          , 0,5,0,8)
+		tableMain.attach(event        , 0,5,0,8)
+
+		tableMain.attach(@cadreAide  , 5,9,0,8)
 		tableMain.attach(hboxBouton , 0,9,8,9)
 
 
@@ -126,10 +125,9 @@ class Fenetre2 < Gtk::Window
 	end
 
 	def setAide(titre, listeCase, desc)
-		@cadreAide.set_markup("")
-		#titreFormat = "<span font-weight=\"bold\" foreground=\"#200020\">test</span>"
-		#listeCaseFormat = "<span style=\"italic\">Case:"+ (listeCase.empty? ? "Aucune" : listeCase.to_s) +"</span>"
-		#descFormat = "<span>"+desc+"</span>"
-		#@cadreAide.markup = titreFormat # + descFormat) #  + listeCase
+		titreFormat = "<span font-weight=\"bold\" size=\"x-large\" foreground=\"#200020\">"+titre+"</span>\n"
+		listeCaseFormat = "<span font-style=\"italic\" size=\"large\" >Case:"+ (listeCase.empty? ? "Aucune" : listeCase.to_s) +"</span>\n"
+		descFormat = "<span>"+desc+"</span>"
+		@cadreAide.set_markup(titreFormat + listeCaseFormat + descFormat )
 	end
 end
