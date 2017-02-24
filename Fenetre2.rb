@@ -10,7 +10,7 @@ class Fenetre2 < Gtk::Window
 
 		# Property
 		set_title "Sudoku Pre-Alpha Ultimate Premium Professional Familial Exclusive Edition (Version d'Evaluation)"
-		set_default_size 1000, 500
+		set_default_size 670, 480
 
 		#==========#
 		# Niveau 1 #
@@ -70,16 +70,23 @@ class Fenetre2 < Gtk::Window
 		box = Gtk::Box.new(:horizontal, 0)
 		#box.override_background_color(:normal, Gdk::RGBA::new(1.0,0.6,0.6,1.0))
 
-		tableGrille = Gtk::Table.new(9, 9, false)
+		tableGrille = Gtk::Table.new(9, 9, true)
 
 		labelTest = Gtk::Label.new("1")
 
-		tableGrille.attach(labelTest, 1, 2, 1, 2)
+		# Remplissage du tableau pour les tests
+		for i in 0..8
+			for y in 0..8
+				tableGrille.attach(Gtk::Label.new().set_markup("<span font-weight=\"bold\">#{y+1}</span>"), y, y+1, i, i+1, Gtk::AttachOptions::EXPAND,
+             Gtk::AttachOptions::EXPAND, 20,0)
+			end
+		end
+
 		box.add(tableGrille)
 
 		# Cadre d'aide
 		@cadreAide = Gtk::Label.new()
-		@cadreAide.set_markup("<a href=\"http://google.fr/\" >Aide... toussa toussa</a>")
+		@cadreAide.set_markup("<a href=\"http://google.fr/\" >Click si tu sait pas jouer au Sudoku</a>")
 		@cadreAide.override_background_color(:normal, Gdk::RGBA::new(0.6,0.6,1.0,1.0))
 
 		# Panel des boutons numerique
@@ -87,7 +94,7 @@ class Fenetre2 < Gtk::Window
 		hboxBouton.homogeneous = true
 		hboxBouton.override_background_color(:normal, Gdk::RGBA::new(0.6,1.0,0.6,1.0))
 
-		event = Gtk::EventBox.new().add(Gtk::Image.new(GdkPixbuf::Pixbuf.new("IC83657.gif", 432, 432)))
+		event = Gtk::EventBox.new().add(Gtk::Image.new(GdkPixbuf::Pixbuf.new("IC83659.png", 432, 432)))
 		tableMain.attach(box          , 0,5,0,8)
 		tableMain.attach(event        , 0,5,0,8)
 
@@ -119,6 +126,8 @@ class Fenetre2 < Gtk::Window
 	    hboxBouton.add(btn7)
 	    hboxBouton.add(btn8)
 	    hboxBouton.add(btn9)
+
+	    print( tableGrille.children()[11].override_background_color(:normal, Gdk::RGBA::new(1.0,0.6,0.6,1.0)))
 
 	    show_all
 	    Gtk.main
