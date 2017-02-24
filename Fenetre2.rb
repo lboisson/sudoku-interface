@@ -70,19 +70,19 @@ class Fenetre2 < Gtk::Window
 		#box.override_background_color(:normal, Gdk::RGBA::new(1.0,0.6,0.6,1.0))
 
 		tableGrille = Gtk::Table.new(9, 9, true)
-		tableGrille.margin-left = 30
+		tableGrille.set_margin_left(1)
 		labelTest = Gtk::Label.new("1")
 
 		# Remplissage du tableau pour les tests
 		for i in 0..8
 			for y in 0..8
-				tableGrille.attach(Gtk::EventBox.new(), y, y+1, i, i+1, Gtk::AttachOptions::EXPAND, Gtk::AttachOptions::EXPAND, 1,0)
+				tableGrille.attach(Gtk::EventBox.new(), y, y+1, i, i+1, Gtk::AttachOptions::EXPAND, Gtk::AttachOptions::EXPAND, 1,1)
 				tableGrille.children().first().add(Gtk::Label.new().set_markup("<span font-weight=\"bold\">#{y+1}</span>"))
-				tableGrille.children().first().set_size_request(46,30)
+				tableGrille.children().first().set_size_request(46,46)
 			end
 		end
 
-		box.add(tableGrille)
+		box.pack_start(tableGrille,:expand => true, :fill => true, :padding => 1 )
 
 		# Cadre d'aide
 		@cadreAide = Gtk::Label.new()
