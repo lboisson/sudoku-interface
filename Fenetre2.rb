@@ -58,7 +58,6 @@ class Fenetre2 < Gtk::Window
 		#==========#
 	    vboxMain.pack_start(menuBar,:expand => false, :fill => false, :padding => 0)
 	    tableMain = Gtk::Table.new(10, 10)
-	    tableMain.override_background_color(:normal, Gdk::RGBA::new(0.4,0.4,1.0,1.0))
 	    vboxMain.pack_start(tableMain,:expand => true, :fill => true, :padding => 0)
 	   
 
@@ -71,14 +70,15 @@ class Fenetre2 < Gtk::Window
 		#box.override_background_color(:normal, Gdk::RGBA::new(1.0,0.6,0.6,1.0))
 
 		tableGrille = Gtk::Table.new(9, 9, true)
-
+		tableGrille.margin-left = 30
 		labelTest = Gtk::Label.new("1")
 
 		# Remplissage du tableau pour les tests
 		for i in 0..8
 			for y in 0..8
-				tableGrille.attach(Gtk::Label.new().set_markup("<span font-weight=\"bold\">#{y+1}</span>"), y, y+1, i, i+1, Gtk::AttachOptions::EXPAND,
-             Gtk::AttachOptions::EXPAND, 20,0)
+				tableGrille.attach(Gtk::EventBox.new(), y, y+1, i, i+1, Gtk::AttachOptions::EXPAND, Gtk::AttachOptions::EXPAND, 1,0)
+				tableGrille.children().first().add(Gtk::Label.new().set_markup("<span font-weight=\"bold\">#{y+1}</span>"))
+				tableGrille.children().first().set_size_request(46,30)
 			end
 		end
 
@@ -127,7 +127,12 @@ class Fenetre2 < Gtk::Window
 	    hboxBouton.add(btn8)
 	    hboxBouton.add(btn9)
 
-	    print( tableGrille.children()[11].override_background_color(:normal, Gdk::RGBA::new(1.0,0.6,0.6,1.0)))
+	    tableGrille.children()[76].override_background_color(:normal, Gdk::RGBA::new(1.0,0.6,0.6,1.0))
+	    tableGrille.children()[11].override_background_color(:normal, Gdk::RGBA::new(1.0,0.6,0.6,1.0))
+	    tableGrille.children()[49].override_background_color(:normal, Gdk::RGBA::new(1.0,0.6,0.6,1.0))
+	    tableGrille.children()[52].override_background_color(:normal, Gdk::RGBA::new(1.0,0.6,0.6,1.0))
+	    tableGrille.children()[37].override_background_color(:normal, Gdk::RGBA::new(1.0,0.6,0.6,1.0))	    
+	    tableGrille.children()[38].override_background_color(:normal, Gdk::RGBA::new(0.4,0.7,0.7,1.0))	
 
 	    show_all
 	    Gtk.main
