@@ -1,4 +1,5 @@
 require 'gtk3'
+require './sudoku.rb'
 
 class Fenetre < Gtk::Window 
 	@cadreAide
@@ -119,7 +120,7 @@ class Fenetre < Gtk::Window
 	    btn9 = Gtk::Button.new(:label => '9', :use_underline => nil, :stock_id => nil)
 
 	    hboxBouton.add(btn1)
-	    hboxBouton.add(btn2)
+	    hboxBouton.add(btn2) 
 	    hboxBouton.add(btn3)
 	    hboxBouton.add(btn4)
 	    hboxBouton.add(btn5)
@@ -139,6 +140,14 @@ class Fenetre < Gtk::Window
 	    tableGrille.children()[25].override_background_color(:normal, Gdk::RGBA::new(1.0,0.6,0.6,1.0))	    
 	    tableGrille.children()[67].override_background_color(:normal, Gdk::RGBA::new(0.4,0.7,0.7,1.0))	
 
+	    generator = Sudoku.new
+	    generator.make_valid
+	    generator.each { |x,y,val|  
+	    	tableGrille.children()[81 - ((x+1)+(y*9))].children[0].set_markup("<span size=\"x-large\" font-weight=\"bold\">#{val}</span>")
+	    	print 81 , "-", (x+1)+(y*9), "=", 81-((x+1)+(y*9)), "\n" 
+	    }
+	    # (x+1)+(y*9)
+	    print generator
 	    show_all
 	    Gtk.main
 	end
