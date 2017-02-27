@@ -85,9 +85,10 @@ class Fenetre < Gtk::Window
 		box.pack_start(tableGrille,:expand => true, :fill => true, :padding => 1 )
 
 		# Cadre d'aide
-		@cadreAide = Gtk::Label.new()
-		@cadreAide.set_markup("<a href=\"http://google.fr/\" >Click si tu sait pas jouer au Sudoku</a>")
-		@cadreAide.override_background_color(:normal, Gdk::RGBA::new(0.6,0.6,1.0,1.0))
+		@cadreAide = Gtk::EventBox.new().add( Gtk::Image.new( :pixbuf => GdkPixbuf::Pixbuf.new(:file => "help.png", :width => 432, :heigth => 432)))
+		#@cadreAide = Gtk::Label.new()
+		#@cadreAide.set_markup("<a href=\"http://google.fr/\" >Click si tu sait pas jouer au Sudoku</a>")
+		#@cadreAide.override_background_color(:normal, Gdk::RGBA::new(0.6,0.6,1.0,1.0))
 
 		# Panel des boutons numerique
 		hboxBouton = Gtk::Box.new(:horizontal, 10) # Pad numérique
