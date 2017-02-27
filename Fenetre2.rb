@@ -10,7 +10,9 @@ class Fenetre2 < Gtk::Window
 
 		# Property
 		set_title "Sudoku Pre-Alpha Ultimate Premium Professional Familial Exclusive Edition (Version d'Evaluation)"
-		set_default_size 670, 480
+		set_default_size 0, 480
+		# Fenetre resizable
+		set_resizable(false)
 
 		#==========#
 		# Niveau 1 #
@@ -85,9 +87,7 @@ class Fenetre2 < Gtk::Window
 		box.add(tableGrille)
 
 		# Cadre d'aide
-		@cadreAide = Gtk::Label.new()
-		@cadreAide.set_markup("<a href=\"http://google.fr/\" >Click si tu sait pas jouer au Sudoku</a>")
-		@cadreAide.override_background_color(:normal, Gdk::RGBA::new(0.6,0.6,1.0,1.0))
+		@cadreAide = Gtk::EventBox.new().add(Gtk::Image.new(GdkPixbuf::Pixbuf.new("help.png", 432, 432)))
 
 		# Panel des boutons numerique
 		hboxBouton = Gtk::Box.new(:horizontal, 10) # Pad numérique
@@ -95,11 +95,12 @@ class Fenetre2 < Gtk::Window
 		hboxBouton.override_background_color(:normal, Gdk::RGBA::new(0.6,1.0,0.6,1.0))
 
 		event = Gtk::EventBox.new().add(Gtk::Image.new(GdkPixbuf::Pixbuf.new("IC83659.png", 432, 432)))
-		tableMain.attach(box          , 0,5,0,8)
-		tableMain.attach(event        , 0,5,0,8)
+		tableMain.attach(box          , 0,3,0,6)
+		tableMain.attach(event        , 0,3,0,6)
 
-		tableMain.attach(@cadreAide  , 5,9,0,8)
-		tableMain.attach(hboxBouton , 0,9,8,9)
+
+		tableMain.attach(@cadreAide  , 3,9,0,6)
+		tableMain.attach(hboxBouton , 0,9,6,9)
 
 
 
